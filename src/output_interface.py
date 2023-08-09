@@ -11,7 +11,7 @@ def generate_midi_output(final_midi_file):
     midi_file.addTempo(0, 0, final_midi_file['tempo'])
 
     # Add notes
-    for i, note in enumerate(final_midi_file['notes']):
+    for note in final_midi_file['notes']:
         midi_file.addNote(0, 0, note['pitch'], note['start_time'], note['duration'], note['volume'])
 
     # Write it to disk

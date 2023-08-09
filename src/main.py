@@ -46,11 +46,7 @@ def main():
     # User customization
     final_midi_file = userCustomization(final_midi_file)
 
-    # Receive feedback
-    user_feedback = receiveFeedback()
-
-    # If feedback received, refine the output
-    if user_feedback:
+    if user_feedback := receiveFeedback():
         final_midi_file = refineOutput(final_midi_file, user_feedback)
 
     return final_midi_file

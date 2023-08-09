@@ -10,8 +10,7 @@ class InstrumentationSelection:
 
     def suggest_instruments(self, selected_genre):
         """Suggest instruments based on the selected genre."""
-        suggested_instruments = GENRE_INSTRUMENTS.get(selected_genre, [])
-        return suggested_instruments
+        return GENRE_INSTRUMENTS.get(selected_genre, [])
 
     def select_instruments(self, instruments):
         """Select instruments based on user input."""
@@ -23,6 +22,5 @@ class InstrumentationSelection:
 
     def get_instrument_sounds(self):
         """Retrieve the sounds of the selected instruments from the library."""
-        instrument_sounds = self.instrument_library.get_sounds(self.selected_instruments)
-        return instrument_sounds
+        return self.instrument_library.get_sounds(self.selected_instruments)
 ```

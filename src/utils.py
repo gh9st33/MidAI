@@ -4,8 +4,7 @@ from mido import MidiFile, MidiTrack, Message
 
 def load_midi_file(file_path):
     try:
-        midi_file = MidiFile(file_path)
-        return midi_file
+        return MidiFile(file_path)
     except Exception as e:
         print(f"Failed to load MIDI file. Error: {str(e)}")
         return None
@@ -18,29 +17,25 @@ def save_midi_file(midi_file, file_path):
         print(f"Failed to save MIDI file. Error: {str(e)}")
 
 def get_tempo(midi_file):
-    for msg in midi_file:
-        if msg.type == 'set_tempo':
-            return msg.tempo
-    return None
+    return next((msg.tempo for msg in midi_file if msg.type == 'set_tempo'), None)
 
 def get_key_signature(midi_file):
-    for msg in midi_file:
-        if msg.type == 'key_signature':
-            return msg.key
-    return None
+    return next(
+        (msg.key for msg in midi_file if msg.type == 'key_signature'), None
+    )
 
 def get_time_signature(midi_file):
-    for msg in midi_file:
-        if msg.type == 'time_signature':
-            return (msg.numerator, msg.denominator)
-    return None
+    return next(
+        (
+            (msg.numerator, msg.denominator)
+            for msg in midi_file
+            if msg.type == 'time_signature'
+        ),
+        None,
+    )
 
 def get_melodic_structure(midi_file):
-    notes = []
-    for msg in midi_file:
-        if msg.type == 'note_on':
-            notes.append(msg.note)
-    return notes
+    return [msg.note for msg in midi_file if msg.type == 'note_on']
 
 def create_midi_track(notes, tempo, time_signature):
     track = MidiTrack()
