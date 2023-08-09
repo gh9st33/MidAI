@@ -8,7 +8,7 @@ def analyzePattern(user_midi_pattern):
     analyzed_pattern = PatternAnalysis()
 
     for i, track in enumerate(mid.tracks):
-        print('Track {}: {}'.format(i, track.name))
+        print(f'Track {i}: {track.name}')
         for msg in track:
             if msg.type == 'set_tempo':
                 analyzed_pattern.tempo = mido.tempo2bpm(msg.tempo)

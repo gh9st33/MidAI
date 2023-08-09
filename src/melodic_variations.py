@@ -6,12 +6,10 @@ def generateMelodicVariations(analyzed_pattern, song_structure):
     melodic_variations = {}
 
     for section in song_structure:
-        if section == 'chorus' or section == 'bridge':
+        if section in ['chorus', 'bridge']:
             variation = generate_variation(analyzed_pattern, MelodicVariation.CHORUS_BRIDGE)
-            melodic_variations[section] = variation
         else:
             variation = generate_variation(analyzed_pattern, MelodicVariation.OTHER_SECTIONS)
-            melodic_variations[section] = variation
-
+        melodic_variations[section] = variation
     return melodic_variations
 ```

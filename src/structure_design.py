@@ -23,8 +23,6 @@ def arrange_tracks():
     global song_structure
     arranged_tracks = []
     for section in [song_structure.intro, song_structure.verse, song_structure.chorus, song_structure.bridge, song_structure.outro]:
-        for track in section:
-            arranged_tracks.append(track)
-
+        arranged_tracks.extend(iter(section))
     return arranged_tracks
 ```
